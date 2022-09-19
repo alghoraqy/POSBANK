@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:task/bloc/Notes/notes_cubit.dart';
 import 'package:task/bloc/Notes/notes_states.dart';
 import 'package:task/module/note_list_screen.dart';
 import 'package:task/shared/Components/components.dart';
-import 'package:task/shared/Methods/shared_method.dart';
 import 'package:task/shared/Responsive/responsive.dart';
 import 'package:task/shared/Theme/Colors/colors.dart';
 import 'package:task/shared/Theme/TextStyles/textstyle.dart';
 
 class AddUserScreen extends StatelessWidget {
-  AddUserScreen({Key? key}) : super(key: key);
+  const AddUserScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +43,7 @@ class AddUserScreen extends StatelessWidget {
                     decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         color: Colors.grey.shade300,
-                        image: DecorationImage(
+                        image: const DecorationImage(
                             image: AssetImage('assets/images/user.png'),
                             fit: BoxFit.fitHeight)),
                   ),
@@ -115,10 +112,9 @@ class AddUserScreen extends StatelessWidget {
                                 }).toList(),
                                 onChanged: (val) {
                                   cubit.changeSelectedVal(val);
-                                  print(val);
                                 },
                                 borderRadius: BorderRadius.circular(10),
-                                icon: Icon(
+                                icon: const Icon(
                                   Icons.arrow_drop_down_outlined,
                                   size: 30,
                                 ),
@@ -150,7 +146,7 @@ class AddUserScreen extends StatelessWidget {
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(10)),
                                   child: state is AddUserLoading
-                                      ? Center(
+                                      ? const Center(
                                           child: CircularProgressIndicator(
                                             color: Colors.white,
                                           ),
@@ -164,7 +160,7 @@ class AddUserScreen extends StatelessWidget {
                             ],
                           ),
                         )
-                      : Center(
+                      : const Center(
                           child: CircularProgressIndicator(),
                         ),
                 ],

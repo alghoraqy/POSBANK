@@ -39,10 +39,11 @@ class NotesItem extends StatelessWidget {
   final NoteModel model;
   final VoidCallback onPressed;
 
-  NotesItem({required this.model, required this.onPressed});
+  const NotesItem({Key? key, required this.model, required this.onPressed})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: rwidth(context),
       child: Column(
         children: [
@@ -63,14 +64,14 @@ class NotesItem extends StatelessWidget {
                 padding: EdgeInsets.only(right: rwidth(context) / 50),
                 child: IconButton(
                     onPressed: onPressed,
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.edit,
                       size: 28,
                     )),
               )
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
           Container(
@@ -93,14 +94,16 @@ class AddUserFormField extends StatelessWidget {
   final TextEditingController controller;
   final VoidCallback? ontap;
 
-  AddUserFormField(
-      {required this.text,
+  const AddUserFormField(
+      {Key? key,
+      required this.text,
       required this.errorText,
       required this.controller,
       this.suffix,
       this.ontap,
       required this.keyboard,
-      this.isPassword});
+      this.isPassword})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
     return TextFormField(

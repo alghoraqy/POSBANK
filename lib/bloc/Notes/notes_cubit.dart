@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -75,7 +73,6 @@ class NotesCubit extends Cubit<NotesStates> {
           (value.data as List).map((i) => NoteModel.fromJson(i)).toList();
       emit(GetAllNotesSuccess());
     }).catchError((error) {
-      print(error.toString());
       emit(GetAllNotesError(error: error.toString()));
     });
   }
@@ -94,12 +91,8 @@ class NotesCubit extends Cubit<NotesStates> {
       usersList!.forEach((element) {
         userIdname.addEntries([MapEntry(element.id, element.username)]);
       });
-      print(usersName);
-      print(userIdname);
-
       emit(GetAllUsersSuccess());
     }).catchError((error) {
-      print(error.toString());
       emit(GetAllUsersError(error: error.toString()));
     });
   }
@@ -125,15 +118,8 @@ class NotesCubit extends Cubit<NotesStates> {
       },
     ).then((value) {
       responseText = value.data;
-      print(
-        DateFormat("yyy-MM-dd'T'hh:mm:ss").format(DateTime.now()),
-      );
       emit(UpdateNotesSuccess(message: responseText!));
     }).catchError((error) {
-      print(error.toString());
-      print(
-        DateFormat("yyy-MM-dd'T'hh:mm:ss").format(DateTime.now()),
-      );
       emit(UpdateNotesError(error: error.toString()));
     });
   }
@@ -153,7 +139,6 @@ class NotesCubit extends Cubit<NotesStates> {
       emit(GetAllInterestsSuccess());
     }).catchError((error) {
       emit(GetAllInterestsError());
-      print(error.toString());
     });
   }
 
@@ -175,7 +160,6 @@ class NotesCubit extends Cubit<NotesStates> {
     }).then((value) {
       emit(AddUserSuccess(message: value.data));
     }).catchError((error) {
-      print(error.toString());
       emit(AddUserError(error: error.toString()));
     });
   }
@@ -221,7 +205,6 @@ class NotesCubit extends Cubit<NotesStates> {
       emit(AddNotesSuccess(message: value.data));
     }).catchError((error) {
       emit(AddNotesError());
-      print(error.toString());
     });
   }
 
@@ -238,18 +221,12 @@ class NotesCubit extends Cubit<NotesStates> {
         // time String
         // status String
 
-        print('database created');
         database
             .execute('CREATE TABLE notes (note TEXT, date TEXT, userId TEXT)')
-            .then((value) {
-          print('table created');
-        }).catchError((error) {
-          print('Error When Creating notes ${error.toString()}');
-        });
+            .then((value) {})
+            .catchError((error) {});
       },
-      onOpen: (database) {
-        print('database opened');
-      },
+      onOpen: (database) {},
     ).then((value) {
       database = value;
       emit(CreateSqfLiteSuccess());
@@ -267,11 +244,8 @@ class NotesCubit extends Cubit<NotesStates> {
         'INSERT INTO notes(note, date, userId) VALUES("$title", "$date", "$userId")',
       )
           .then((value) {
-        print('$value inserted successfully');
         emit(InsertToSqfLiteSuccess());
-      }).catchError((error) {
-        print('Error When Inserting New Record ${error.toString()}');
-      });
+      }).catchError((error) {});
     });
   }
 }

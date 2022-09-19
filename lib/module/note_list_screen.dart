@@ -11,8 +11,11 @@ import 'package:task/shared/Methods/shared_method.dart';
 import 'package:task/shared/Responsive/responsive.dart';
 import 'package:task/shared/Theme/Colors/colors.dart';
 
+// ignore: must_be_immutable
 class NoteListScreen extends StatelessWidget {
   bool? isBottomSheet;
+
+  NoteListScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,12 +30,12 @@ class NoteListScreen extends StatelessWidget {
           appBar: myAppBar(context, title: 'Notes', actions: [
             IconButton(
                 onPressed: () {
-                  navigateTo(context, AddUserScreen());
+                  navigateTo(context, const AddUserScreen());
                 },
                 icon: const Icon(Icons.person_add)),
             IconButton(
                 onPressed: () {
-                  navigateTo(context, OptionsScreen());
+                  navigateTo(context, const OptionsScreen());
                 },
                 icon: const Icon(Icons.settings)),
             IconButton(onPressed: () {}, icon: const Icon(Icons.menu)),
@@ -54,7 +57,7 @@ class NoteListScreen extends StatelessWidget {
               } else {
                 showModalBottomSheet(
                     isScrollControlled: true,
-                    shape: RoundedRectangleBorder(
+                    shape: const RoundedRectangleBorder(
                         borderRadius:
                             BorderRadius.vertical(top: Radius.circular(25))),
                     context: context,
@@ -75,8 +78,9 @@ class NoteListScreen extends StatelessWidget {
                                 bottom:
                                     MediaQuery.of(context).viewInsets.bottom),
                             child: Container(
-                              padding: EdgeInsets.all(15),
-                              margin: EdgeInsets.symmetric(horizontal: 10),
+                              padding: const EdgeInsets.all(15),
+                              margin:
+                                  const EdgeInsets.symmetric(horizontal: 10),
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
                                   color: Colors.grey.shade300),
@@ -90,7 +94,7 @@ class NoteListScreen extends StatelessWidget {
                                         errorText: 'Must not be empty',
                                         controller: cubit2.noteTextController,
                                         keyboard: TextInputType.name),
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 20,
                                     ),
                                     DropdownButtonFormField<String>(
@@ -109,18 +113,17 @@ class NoteListScreen extends StatelessWidget {
                                       }).toList(),
                                       onChanged: (val) {
                                         cubit2.changeAssignUser(val);
-                                        print(val);
                                       },
                                       borderRadius: BorderRadius.circular(10),
-                                      icon: Icon(
+                                      icon: const Icon(
                                         Icons.arrow_drop_down_outlined,
                                         size: 30,
                                       ),
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 5,
                                     ),
-                                    Container(
+                                    SizedBox(
                                       width: rwidth(context) / 4,
                                       child: MaterialButton(
                                         height: rhight(context) / 20,
@@ -162,13 +165,13 @@ class NoteListScreen extends StatelessWidget {
                                             borderRadius:
                                                 BorderRadius.circular(15)),
                                         child: states is AddNoteLoading
-                                            ? Center(
+                                            ? const Center(
                                                 child:
                                                     CircularProgressIndicator(
                                                   color: Colors.white,
                                                 ),
                                               )
-                                            : Icon(
+                                            : const Icon(
                                                 Icons.add,
                                                 color: Colors.white,
                                               ),
@@ -185,10 +188,10 @@ class NoteListScreen extends StatelessWidget {
               }
             },
             child: state is AddNoteLoading
-                ? CircularProgressIndicator(
+                ? const CircularProgressIndicator(
                     color: Colors.white,
                   )
-                : Icon(
+                : const Icon(
                     Icons.add,
                     size: 28,
                     color: Colors.white,
@@ -203,7 +206,7 @@ class NoteListScreen extends StatelessWidget {
                 Row(
                   children: [
                     PopupMenuButton(
-                      icon: Icon(Icons.sort),
+                      icon: const Icon(Icons.sort),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10)),
                       itemBuilder: (context) {
@@ -216,23 +219,21 @@ class NoteListScreen extends StatelessWidget {
                       },
                       onSelected: (value) {
                         cubit.searchByUserID(value.toString());
-                        print(cubit.searchedbyUserIdnotes![0].text);
-                        print(value.toString());
                       },
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 5,
                     ),
                     IconButton(
                         onPressed: () {
                           cubit.changeSearch();
                         },
-                        icon: Icon(
+                        icon: const Icon(
                           Icons.search,
                           size: 30,
                           color: Colors.black,
                         )),
-                    SizedBox(
+                    const SizedBox(
                       width: 5,
                     ),
                     if (cubit.isSearch)
@@ -241,7 +242,7 @@ class NoteListScreen extends StatelessWidget {
                           autofocus: true,
                           controller: cubit.searchController,
                           decoration: InputDecoration(
-                              contentPadding: EdgeInsets.symmetric(
+                              contentPadding: const EdgeInsets.symmetric(
                                   horizontal: 10, vertical: 0),
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(12)),
@@ -250,7 +251,7 @@ class NoteListScreen extends StatelessWidget {
                                   onPressed: () {
                                     cubit.closeSearch();
                                   },
-                                  icon: Icon(
+                                  icon: const Icon(
                                     Icons.close,
                                     size: 20,
                                   ))),

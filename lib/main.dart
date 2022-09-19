@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:task/Network/remote/dio_helper.dart';
 import 'package:task/bloc/Notes/notes_cubit.dart';
 import 'package:task/bloc/Notes/notes_states.dart';
-import 'package:task/module/add_user_screen.dart';
 import 'package:task/module/note_list_screen.dart';
 
 void main() {

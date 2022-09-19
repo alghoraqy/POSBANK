@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:task/bloc/Notes/notes_cubit.dart';
 import 'package:task/bloc/Notes/notes_states.dart';
@@ -11,7 +9,7 @@ import 'package:task/shared/Responsive/responsive.dart';
 
 class EditNoteScreen extends StatelessWidget {
   final NoteModel noteModel;
-  EditNoteScreen({required this.noteModel});
+  const EditNoteScreen({Key? key, required this.noteModel}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +41,7 @@ class EditNoteScreen extends StatelessWidget {
                       userId: cubit.selectedUserID,
                     );
                   },
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.save_as_outlined,
                     size: 28,
                   )),
@@ -83,10 +81,9 @@ class EditNoteScreen extends StatelessWidget {
                   }).toList(),
                   onChanged: (val) {
                     cubit.changeAssignUser(val);
-                    print(val);
                   },
                   borderRadius: BorderRadius.circular(10),
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.arrow_drop_down_outlined,
                     size: 30,
                   ),
